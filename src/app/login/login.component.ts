@@ -62,4 +62,10 @@ export class LoginComponent {
       }
     });
   }
+
+  consultar():void{
+    const div = document.querySelector("#test") as HTMLElement;
+    div.style.background = 'yellow';
+
+  }
 }

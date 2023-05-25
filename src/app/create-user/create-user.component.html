@@ -26,17 +26,17 @@
           <div class="d-flex gap-2 justify-content-evenly">
             <div style="flex-basis: 30%;" class="input-form">
               <label for="">Email</label>
-              <input class="form-control" [(ngModel)]="email" type="text" name="email" placeholder="Ingrese su Email">
+              <input maxlength="50" class="form-control" [(ngModel)]="email" type="text" name="email" placeholder="Ingrese su Email">
             </div>
 
             <div style="flex-basis: 30%;" class="input-form">
               <label for="">Contraseña</label>
-              <input class="form-control" [(ngModel)]="password" type="password" name="password" placeholder="Ingrese su Contraseña">
+              <input maxlength="16" class="form-control" [(ngModel)]="password" type="password" name="password" placeholder="Ingrese su Contraseña">
             </div>
 
             <div style="flex-basis: 30%;" class="input-form">
               <label for="">Confirmar contraseña</label>
-              <input class="form-control" [(ngModel)]="confirm_pass" type="password" name="con-password" placeholder="Confirme su contraseña">
+              <input maxlength="16" class="form-control" [(ngModel)]="confirm_pass" type="password" name="con-password" placeholder="Confirme su contraseña">
             </div>
           </div>
           <div class="d-flex gap-2 justify-content-evenly">

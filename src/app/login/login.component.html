@@ -9,7 +9,7 @@
       <div class="border rounded d-flex flex-column p-2 gap-2 w-75">
         <div class="d-flex flex-column">
           <label for="email">Email</label>
-          <input id="email" class="form-control" [(ngModel)]="user" type="email" name="email" placeholder="Ingrese su Email">
+          <input maxlength="50" id="email" class="form-control" [(ngModel)]="user" type="email" name="email" placeholder="Ingrese su Email">
           <label for="pass">Contraseña</label>
           <input id="pass" class="form-control" [(ngModel)]="password" type="password" name="password" placeholder="Ingrese su Contraseña">
         </div>
