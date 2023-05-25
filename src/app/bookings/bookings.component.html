@@ -1,0 +1,94 @@
+<div id="home" class="d-flex gap-4" style="width: 95vw; height: 100%;">
+  <div id="img-home" style="flex-basis: 20%;" class="bg-primary border rounded d-flex justify-content-center">
+    <img style="flex-basis: 70%;" src="../../assets/img-stock/LogoElCamello.svg" alt="">
+  </div>
+  <div style="flex-basis: 80%;" class="d-flex flex-column w-100 h-100">
+    <div class="d-flex flex-column justify-content-center align-items-start">
+      <h1 class="display-4">Mis Reservas</h1>
+      <p class="h6">En este espacio puedes encontrar la lista de reservas que realizaste a lo largo del tiempo...</p>
+    </div>
+    <div class="container border rounded p-3 d-flex flex-wrap justify-content-center gap-3 w-100 overflow" style="overflow-y: auto;">
+      <div *ngIf="bookingList == []" class="d-flex justify-content-center align-items-center h-100 w-100">
+        <h1>No tiene reservas realizadas en este momento</h1>
+      </div>
+      <div *ngFor="let booking of bookingList" class="card" style="width: 30%;">
+        <div class="card-header">
+          <h4 class="m-0"><strong>#{{booking.booking_id}}) </strong> {{booking.date_booking}}</h4>
+        </div>
+        <div class="card-body d-flex flex-column gap-1">
+          <h6>Hora de Entrada: <strong>{{booking.hour_start}}</strong></h6>
+          <h6>Hora de Salida: <strong>{{booking.hour_end}}</strong></h6>
+          <p *ngIf="booking.note == ''">No dejaste ninguna nota para esta reserva...</p>
+          <p>{{booking.note}}</p>
+          <h6>Valor Pago: ${{booking.value}}</h6>
+          <h6>Estado: <span *ngIf="booking.state == 'PAGO'" style="color: green;">{{booking.state}}</span> <span *ngIf="booking.state == 'PENDIENTE'" style="color: red;">{{booking.state}}</span></h6>
+        </div>
+        <div class="card-footer d-flex gap-2 justify-content-end">
+          <button (click)="showModifyModal(booking)" class="btn btn-dark" *ngIf="booking.state == 'PENDIENTE'">Modificar</button>
+          <button (click)="modalDelete(booking.booking_id)" class="btn btn-outline-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=modalDelete>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar Reserva</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          ¿Está Seguro que Desea Eliminar la <strong>Reserva #<span id="modalDeleteValue"></span></strong> ?
+        </div>
+        <div class="modal-footer">
+          <button data-bs-dismiss="modal" class="btn btn-primary">Cancelar</button>
+          <button (click)="deleteBooking()" data-bs-dismiss="modal" class="btn btn-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=modifyModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modificación de Reserva</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <div class="card-body w-100 d-flex flex-column gap-3">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div style="flex-basis: 100%;" class="d-flex flex-column">
+                <label class="h6" for="day">Día</label>
+                <input [(ngModel)]="bookingToModify.date_booking" [min]="actualDate" class="form-control" id="day" type="date">
+              </div>
+            </div>
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div style="flex-basis: 45%;" class="d-flex flex-column">
+                <label class="h6" for="open">Entrada</label>
+                <input [(ngModel)]="bookingToModify.hour_start" [min]="actualHour" class="form-control" #secondOpen type="time" id="open" name="secondOpen" (change)="validateTime($event)" required>
+              </div>
+              <div style="flex-basis: 45%;" class="d-flex flex-column">
+                <label class="h6" for="close">Salida</label>
+                <input [(ngModel)]="bookingToModify.hour_end" [min]="actualHour" class="form-control" #secondClose type="time" id="close" name="secondClose" (change)="validateTime($event)" required>
+              </div>
+            </div>
+            <div class="d-flex flex-column">
+              <label for="" class="h6">Nota</label>
+              <textarea [(ngModel)]="bookingToModify.note" placeholder="(Opcional) Escriba una nota que desea dejar para la reserva" class="form-control" style="resize: none;" name="" id="" cols="30" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button data-bs-dismiss="modal" class="btn btn-dark">Cancelar</button>
+          <button (click)="modifyBooking();" class="btn btn-success">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

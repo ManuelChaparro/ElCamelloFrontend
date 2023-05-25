@@ -1,1 +1,21 @@
-<p>home works!</p>
+<div id="container">
+  <div id="header">
+    <div id="cont-btn-booking">
+      <button class="btn-header" (click)="cambiarComponente(1)" id="btn-booking"><img id="booking-img" src="../../assets/img-stock/bookingWhite.webp" alt="">Mis Reservas</button>
+    </div>
+    <button class="btn-header" (click)="cambiarComponente(0)" id="btn-home"><img id="camello-img" src="../../assets/img-stock/logoWhite.png" alt=""><h1>El Camello Coworking</h1></button>
+    <div>
+      <button class="btn-header"  placement="bottom"><img id="user-img" src="../../assets/img-stock/user.webp" alt="">{{name}} {{surname}}</button>
+      <ng-template #popoverContent>
+        <div class="d-flex flex-column gap-2">
+          <button (click)="cambiarComponente(2)" type="button" class="btn btn-primary mr-2">Ver Perfil</button>
+          <button (click)="logout()" type="button" class="btn btn-danger">Cerrar Sesión</button>
+        </div>
+      </ng-template>
+    </div>
+
+  </div>
+  <div id="content" class="d-flex justify-content-center m-2" style="overflow-y: auto; width: 100vw;">
+    <ng-container *ngComponentOutlet="componentes[indiceComponenteActual].componente"></ng-container>
+  </div>
+</div>
