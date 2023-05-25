@@ -1,1 +1,12 @@
-<p>adminbookings works!</p>
+<div id="container row">
+  <div class="d-flex gap-3 py-1 text-center border-bottom align-items-center">
+    <h4 style="flex-basis: 50%;">Reservas</h4>
+    <div style="flex-basis: 50%;" class="row justify-items-evenly align-items-center gap-3 px-3">
+      <button class="btn btn-success col d-flex gap-3 justify-content-center align-items-center" (click)="cambiarComponente(1)"><i class="fas fa-plus"></i>Crear Reserva</button>
+      <button class="btn btn-dark col d-flex gap-3 justify-content-center align-items-center" (click)="cambiarComponente(0)"><i class="fas fa-eye"></i>Ver Reservas</button>
+    </div>
+  </div>
+  <div id="data">
+    <ng-container *ngComponentOutlet="componentes[indiceComponenteActual].componente"></ng-container>
+  </div>
+</div>

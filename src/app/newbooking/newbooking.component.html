@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h4>Creación de Reserva</h4>
+    </div>
+    <div class="card-body w-100 d-flex flex-column gap-3">
+      <div class="d-flex flex-column">
+        <label class="h6" for="user">Usuario</label>
+        <select (change)="loadUser($event)" class="form-control" id="user">
+          <option *ngFor="let user of usersList">{{user.id_usuario}} | {{user.nombres}} {{user.apellidos}}</option>
+        </select>
+      </div>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div style="flex-basis: 45%;" class="d-flex flex-column">
+          <label class="h6" for="csampus">Sede</label>
+          <select (change)="loadSpaces($event)" class="form-control" name="" id="campus">
+            <option [id]="campus.id_sede" [value]="campus.nombre_sede" *ngFor="let campus of campusList">{{campus.nombre_sede}}</option>
+          </select>
+        </div>
+        <div style="flex-basis: 45%;" class="d-flex flex-column">
+          <label class="h6" for="space">Espacio</label>
+          <select (change)="setSpace($event)" class="form-control" name="" id="selectSpace">
+            <option [id]="space.id_espacio" [value]="space.nombre" *ngFor="let space of spacesList">{{space.nombre}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div style="flex-basis: 45%;" class="d-flex flex-column">
+          <label class="h6" for="day">Día</label>
+          <input [(ngModel)]="bookingData.date_booking" [min]="actualDate" class="form-control" id="day" type="date">
+        </div>
+        <div style="flex-basis: 45%;" class="d-flex flex-column">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div style="flex-basis: 45%;" class="d-flex flex-column">
+              <label class="h6" for="open">Entrada</label>
+              <input [(ngModel)]="bookingData.hour_start" [min]="actualHour" class="form-control" #secondOpen type="time" id="open" name="secondOpen" (change)="validateTime($event)" required>
+            </div>
+            <div style="flex-basis: 45%;" class="d-flex flex-column">
+              <label class="h6" for="close">Salida</label>
+              <input [(ngModel)]="bookingData.hour_end" [min]="actualHour" class="form-control" #secondClose type="time" id="close" name="secondClose" (change)="validateTime($event)" required>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column">
+        <label for="" class="h6">Nota</label>
+        <textarea maxlength="250" [(ngModel)]="bookingData.note" placeholder="(Opcional) Escriba una nota que desea dejar para la reserva" class="form-control" style="resize: none;" name="" id="" cols="30" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="card-footer d-flex gap-2 justify-content-end">
+      <button (click)="createBooking()" style="flex-basis: 20%;" class="btn btn-success">Crear</button>
+    </div>
+  </div>
+</div>
+
+<div id="notification" class="alert alert-primary" role="alert">
+  ¡ La reserva ha sido creada existosamente !
+</div>
+
+<div id="notification-error" class="alert alert-danger" role="alert">
+  Ya existe una reserva para la hora elegida...
+</div>
+
+<div id="notification-error-time" class="alert alert-danger" role="alert">
+  La reserva debe tener mínimo media hora de duración
+</div>

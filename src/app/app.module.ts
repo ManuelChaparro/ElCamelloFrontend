@@ -23,6 +23,8 @@ import { StocklistComponent } from './stocklist/stocklist.component';
 import { NewstockComponent } from './newstock/newstock.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { CampusComponent } from './campus/campus.component';
+import { BookingslistComponent } from './bookingslist/bookingslist.component';
+import { NewbookingComponent } from './newbooking/newbooking.component';
 
 const appRoutes:Routes=[
   {path:'login', component:LoginComponent},
@@ -52,7 +54,9 @@ const appRoutes:Routes=[
     StocklistComponent,
     NewstockComponent,
     BookingsComponent,
-    CampusComponent
+    CampusComponent,
+    BookingslistComponent,
+    NewbookingComponent
   ],
   imports: [
     BrowserModule,
