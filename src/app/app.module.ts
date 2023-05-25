@@ -19,6 +19,8 @@ import { AdminusersComponent } from './adminusers/adminusers.component';
 import { InfouserComponent } from './infouser/infouser.component';
 import { CampuslistComponent } from './campuslist/campuslist.component';
 import { NewcampusComponent } from './newcampus/newcampus.component';
+import { StocklistComponent } from './stocklist/stocklist.component';
+import { NewstockComponent } from './newstock/newstock.component';
 
 const appRoutes:Routes=[
   {path:'login', component:LoginComponent},
@@ -44,7 +46,9 @@ const appRoutes:Routes=[
     AdminusersComponent,
     InfouserComponent,
     CampuslistComponent,
-    NewcampusComponent
+    NewcampusComponent,
+    StocklistComponent,
+    NewstockComponent
   ],
   imports: [
     BrowserModule,

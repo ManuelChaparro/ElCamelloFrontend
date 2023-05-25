@@ -1,0 +1,62 @@
+<div id="stock" class=" m-2row h-100 w-100 border rounded p-2" style="overflow-y: auto; max-height: 75vh;">
+  <div id="stock-info" class="col h-100 align-items-strech">
+    <div class="row gap-2 justify-content-center h-100">
+      <div class="d-flex flex-column gap-1">
+        <label for="stock-name">Sede <span style="display: none; color: red;" id="warn-name">*</span></label>
+        <select (change)="changeCampusSelect()" class="form-select" id="select_campus">
+          <option *ngFor="let campus of campus_list" selected>{{campus.id_sede}} - {{campus.nombre_sede}}</option>
+        </select>
+      </div>
+      <div class="d-flex flex-column gap-1">
+        <label for="stock-name">Nombre <span style="display: none; color: red;" id="warn-name">*</span></label>
+        <input id="stock-name" (change)="verifyInput(0)" class="form-control" [(ngModel)]="stockName" type="text"  placeholder="Ingrese el nombre del producto">
+      </div>
+      <div class="d-flex flex-column gap-1">
+        <label for="stock-type">Tipo</label>
+        <select id="stock-type" class="form-select" #stockType (change)="changeStockType(stockType.value)">
+          <option selected>Mueble</option>
+          <option>Equipo Electrónico</option>
+          <option>Herramienta</option>
+          <option>Artículo de Oficina</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="d-flex flex-column gap-1">
+        <label for="stock-brand">Marca <span style="display: none; color: red;" id="warn-brand">*</span></label>
+        <input (change)="verifyInput(3)"style="resize: none;" [(ngModel)]="stockBrand" class="form-control" id="stock-brand" cols="30" rows="4" placeholder="Ingrese la Marca">
+      </div>
+      <div class="d-flex flex-column gap-1">
+        <label for="stock-description">Descripción <span style="display: none; color: red;" id="warn-description">*</span></label>
+        <textarea (change)="verifyInput(1)"style="resize: none;" [(ngModel)]="stockDescription" class="form-control" id="stock-description" cols="30" rows="4" placeholder="Ingrese la Descripción"></textarea>
+      </div>
+      <div class="d-flex flex-column gap-1">
+        <label for="stock-price">Valor Comercial <span style="display: none; color: red;" id="warn-price">*</span></label>
+        <input (change)="verifyInput(2)" [(ngModel)]="stockPrice" placeholder="Ingrese el valor comercial" id="stock-price" type="text" class="form-control" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" />
+      </div>
+      <div class="d-flex flex-column gap-1 justify-content-end align-items-center">
+        <button (click)="addObjToStock()" class="stock-add btn btn-primary mt-2 w-50 btn-height">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="notification" class="alert alert-primary" role="alert">
+  El objeto '<span id="notification_name"></span>' ha sido creado existosamente
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=myModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Información Insuficiente</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Faltan campos por llenar, asegurate que toda la Información requerida para el objeto nuevo esté completa.
+          <br> <br> (Los datos que faltan se encuentran resaltados con un asterisco rojo)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
