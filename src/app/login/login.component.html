@@ -1,0 +1,33 @@
+<div class="container-login">
+  <div class="img-login">
+    <img class="background" src="../../assets/img-stock/LoginHome.jpg" alt="">
+    <img class="logo" src="../../assets/img-stock/LogoElCamello.svg" alt="">
+  </div>
+  <div class="size-web">
+    <div class="container-info">
+      <div class="titles-container">
+        <label class="title-camello" for="">El Camello <span class="title-coworking">Coworking</span></label>
+      </div>
+      <label class="title-logininit" for="">Inicio de sesión</label>
+
+      <form class="form" action="">
+        <div>
+          <label class="label_input" for="email">Correo Electrónico<span id="warn_email">Correo inválido*</span></label>
+          <input class="form-control" [(ngModel)]="user" type="email" name="email" placeholder="Ingrese su Email">
+        </div>
+        <div>
+          <label class="label_input" for="email">Contraseña <span id="warn_pass">Contraseña inválida*</span> </label>
+          <input class="form-control" [(ngModel)]="password" type="password" name="password" placeholder="Ingrese su Contraseña">
+        </div>
+        <div class="btns-container">
+          <button (click)="goToCreateUser()" class="btn btn-register" type="button">Crear cuenta</button>
+          <button (click)="validateLogin()" class="btn btn-login" type="submit">Iniciar sesión</button>
+        </div>
+        <div class="forget-pass">
+          <a href="/recoverPass">¿Olvidaste tu contraseña?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
