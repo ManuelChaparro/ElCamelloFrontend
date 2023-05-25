@@ -1,98 +1,99 @@
-<div class="container-create">
-  <div class="img-login">
-    <img class="background" src="../../assets/img-stock/CreateUserBack.svg" alt="">
-    <img class="logo" src="../../assets/img-stock/LogoElCamello.svg" alt="">
-    <h1 class="title-logo">Crear cuenta</h1>
+<div class="position-absolute d-flex" style="width: 100vw; height: 100vh; background-color: #BF5417;">
+  <div class="text-light d-flex flex-column justify-content-center align-items-center gap-1" style="flex-basis: 25%; background-image: url('../../assets/img/login.svg'); background-position: center; background-size: cover;">
+    <img style="filter: brightness(200);" src="https://elcamello.co/wp-content/uploads/2018/11/Logo-El-camello.svg" alt="">
+    <h1 class="display-5">Crea Tu Cuenta</h1>
   </div>
-  <div class="container">
-    <h1 class="title-info">Ingresa tus datos para <span class="title-knowing">conocerte</span> mejor!</h1>
-    <div class="btns-options">
-      <button (click)="onOptionId()" class="btn-option" id="btn-identification">Identificación</button>
-      <button (click)="onOptionCr()" class="btn-option" id="btn-credential">Credenciales</button>
-      <button (click)="onOptionPi()" class="btn-option" id="btn-personalinfo">Info personal</button>
+  <div class="bg-light p-5 w-100 h-100" style="flex-basis: 75%;">
+    <div style="background-color: white;" class="p-2 gap-3 border rounded w-100 h-100 d-flex flex-column justify-content-evenly align-items-center">
+      <div *ngIf="view == 0" class="d-flex flex-column align-items-center justify-content-between w-100" style="flex-basis: 100%;">
+        <div class="d-flex flex-column justify-content-evenly gap-2 w-100 h-100" style="flex-basis: 95%;">
+          <div class="d-flex gap-2 justify-content-evenly">
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Nombres</label>
+              <input class="form-control" [(ngModel)]="name" type="text" name="name" placeholder="Ingrese su Nombre">
+            </div>
+
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Apellidos</label>
+              <input class="form-control" [(ngModel)]="surname" type="text" name="surname" placeholder="Ingrese sus Apellidos">
+            </div>
+
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Celular</label>
+              <input class="form-control" [(ngModel)]="number" name="cellphone" placeholder="Ingrese su Número" type="number" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+            </div>
+          </div>
+          <div class="d-flex gap-2 justify-content-evenly">
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Email</label>
+              <input class="form-control" [(ngModel)]="email" type="text" name="email" placeholder="Ingrese su Email">
+            </div>
+
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Contraseña</label>
+              <input class="form-control" [(ngModel)]="password" type="password" name="password" placeholder="Ingrese su Contraseña">
+            </div>
+
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Confirmar contraseña</label>
+              <input class="form-control" [(ngModel)]="confirm_pass" type="password" name="con-password" placeholder="Confirme su contraseña">
+            </div>
+          </div>
+          <div class="d-flex gap-2 justify-content-evenly">
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Género</label>
+              <select class="form-control" class="form-select" #genders (change)="changeGender(genders.value)">
+                <option selected>Masculino</option>
+                <option>Femenino</option>
+                <option>Prefiero no decirlo</option>
+              </select>
+            </div>
+
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Tipo de documento</label>
+              <select class="form-control" class="form-select" #doctypes (change)="changeDocType(doctypes.value)">
+                <option selected>Cédula de Ciudadanía</option>
+                <option>Tarjeta de Identidad</option>
+              </select>
+            </div>
+
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Documento</label>
+              <input class="form-control" [(ngModel)]="document" name="document" placeholder="Ingrese su Número de Documento" type="number" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+            </div>
+          </div>
+          <div class="d-flex gap-2 justify-content-center">
+            <div style="flex-basis: 30%;" class="input-form">
+              <label for="">Fecha de nacimiento</label>
+              <input class="form-control" [(ngModel)]="birthdate" type="date" name="birthdate">
+            </div>
+          </div>
+        </div>
+        <button (click)="validateUser()" style="flex-basis: 5%;" class="w-75 btn btn-success">Crear Cuenta</button>
+      </div>
+      <div class="d-flex flex-column w-100 h-100 text-center justify-content-evenly align-items-center" *ngIf="view == 1">
+        <h1 class="display-4"><i class="fas fa-check"></i> Registro Exitoso!</h1>
+        <h3>Serás redireccionado a la página de inicio</h3>
+        <img src="https://elcamello.co/wp-content/uploads/2018/11/Logo-El-camello.svg" alt="">
+      </div>
     </div>
-    <form action="" class="form">
-      <div class="column-form" id="div-identification">
-        <div class="input-form">
-          <label for="">Nombres</label>
-          <label class="warn warn_name" for="">El nombre no puede estar vacío</label>
-          <input [(ngModel)]="name" type="text" name="name" placeholder="Ingrese su Nombre">
-        </div>
-
-        <div class="input-form">
-          <label for="">Apellidos</label>
-          <label class="warn warn_surname" for="">El apellido no puede estar vacío</label>
-          <input [(ngModel)]="surname" type="text" name="surname" placeholder="Ingrese sus Apellidos">
-        </div>
-
-        <div class="input-form">
-          <label for="">Celular</label>
-          <label class="warn warn_phone" for="">El celular no puede estar vacío</label>
-          <input [(ngModel)]="number" name="cellphone" placeholder="Ingrese su Número" type="number" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-        </div>
-      </div>
-      <div class="column-form" id="div-credential">
-        <div class="input-form">
-          <label for="">Email</label>
-          <label class="warn warn_email" for="">El correo ingresado no es válido</label>
-          <input [(ngModel)]="email" type="text" name="email" placeholder="Ingrese su Email">
-        </div>
-
-        <div class="input-form">
-          <label for="">Contraseña</label>
-          <label class="warn warn_pass" for="">Debe tener mínimo 8 carácteres</label>
-          <input [(ngModel)]="password" type="password" name="password" placeholder="Ingrese su Contraseña">
-        </div>
-
-        <div class="input-form">
-          <label for="">Confirmar contraseña</label>
-          <label class="warn warn_con_pass" for="">No coinciden</label>
-          <input [(ngModel)]="confirm_pass" type="password" name="con-password" placeholder="Confirme su contraseña">
-        </div>
-
-      </div>
-      <div class="column-form" id="div-personalinfo">
-        <div class="input-form">
-          <label for="">Género</label>
-          <select class="form-select" #genders (change)="changeGender(genders.value)">
-            <option selected>Masculino</option>
-            <option>Femenino</option>
-            <option>Prefiero no decirlo</option>
-          </select>
-        </div>
-
-        <div class="input-form">
-          <label for="">Tipo de documento</label>
-          <select class="form-select" #doctypes (change)="changeDocType(doctypes.value)">
-            <option selected>Cédula de Ciudadanía</option>
-            <option>Tarjeta de Identidad</option>
-          </select>
-        </div>
-
-        <div class="input-form">
-          <label for="">Documento</label>
-          <label class="warn warn_doc" for="">El documento no puede estar vacío</label>
-          <input [(ngModel)]="document" name="document" placeholder="Ingrese su Número de Documento" type="number" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
-        </div>
-      </div>
-      <div class="column-form column-date" id="div-date">
-        <div class="input-form">
-          <label for="">Fecha de nacimiento</label>
-          <label class="warn warn_birth" for="">Seleccione una fecha de nacimiento</label>
-          <label class="warn warn_birth_more" for="">Debe tener mas de 16 años</label>
-          <input [(ngModel)]="birthdate" type="date" name="birthdate">
-        </div>
-      </div>
-    </form>
-    <div class="input-form con-btn">
-      <button type="submit" class="btn btn-primary" (click)="validateUser()">Crear Usuario</button>
-    </div>
-  </div>
-  <div class="noticeAccount">
-    <h1>¡Cuenta creada con éxito!</h1>
-    <h3>Serás redireccionado a la página de autenticación</h3>
-    <img src="../../assets/img-stock/LogoElCamello.svg" alt="">
   </div>
 </div>
 
+<div class="container mt-3">
+  <div class="modal fade" id=myModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Información Insuficiente</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Faltan campos por llenar, asegurate que toda la Información requerida esté completa.
+          <strong>Recuerda que debes ser mayor de 16 años para ingresar</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
