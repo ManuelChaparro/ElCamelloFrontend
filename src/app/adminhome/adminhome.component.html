@@ -1,0 +1,30 @@
+<header class="position-absolute w-100 bg-dark text-white d-flex w-100 px-4 border-bottom background" style="top: 0; left: 0; height: 10%;">
+  <div class="d-flex flex-row justify-content-center align-items-center" style="flex-basis: 25%;">
+    <h5 class="d-flex justify-content-center align-items-center gap-2 m-0"><i class="fas fa-suitcase"></i> ADMINISTRADOR</h5>
+  </div>
+  <div class="d-flex flex-row justify-content-center align-items-center" style="flex-basis: 50%;">
+    <a style="text-decoration: none;" href="/adminHome"><h1 class="text-white m-0"><strong>El Camello</strong> Coworking</h1></a>
+  </div>
+  <div class="d-flex flex-row justify-content-center align-items-center w-100" style="flex-basis: 25%;">
+    <button placement="bottom" class="btn btn-outline-light d-flex gap-2 justify-content-center align-items-center"><i class="fas fa-user"></i> {{name}}</button>
+    <ng-template #popoverContent>
+      <div class="d-flex flex-column gap-2">
+        <button (click)="cambiarComponente(5)" type="button" class="btn btn-outline-primary mr-2"><i class="fas fa-user"></i> Ver Perfil</button>
+        <button (click)="logout()" type="button" class="btn btn-outline-danger"><i class="fas fa-right-from-bracket"></i> Cerrar Sesión</button>
+      </div>
+    </ng-template>
+  </div>
+</header>
+<body class="position-absolute w-100 d-flex " style="top: 10%; left: 0; height: 90%;">
+  <div style="flex-basis: 15%;" class="p-2 d-flex flex-column gap-2 h-100 bg-dark border-right border-dark">
+    <button (click)="cambiarComponente(0)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-building"></i>Sedes</button>
+    <button (click)="cambiarComponente(1)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-users"></i>Usuarios</button>
+    <button (click)="cambiarComponente(4)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-boxes"></i>Inventario</button>
+    <button (click)="cambiarComponente(6)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-calendar"></i>Horarios</button>
+    <button (click)="cambiarComponente(2)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-receipt"></i>Reservas</button>
+    <button (click)="cambiarComponente(3)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-file"></i>Reportes</button>
+  </div>
+  <div class="bg-light p-2 px-3 container h-100 m-0">
+    <ng-container *ngComponentOutlet="componentes[indiceComponenteActual].componente"></ng-container>
+  </div>
+</body>

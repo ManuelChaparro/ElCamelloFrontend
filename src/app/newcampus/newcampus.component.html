@@ -1,0 +1,128 @@
+<div id="container" class="position-absolute" style="width: 80%; height: 80%;">
+  <div id="btns-option">
+    <button (click)="changePanel(0)">Información Sede</button>
+    <button (click)="changePanel(1)">Espacios</button>
+  </div>
+  <div id="data">
+    <div id="info">
+      <div class="d-flex">
+        <div class="input-containers" style="flex-basis: 50%;">
+          <label for="campusName">Nombres <span style="display: none; color: red;" id="warn-name">*</span></label>
+          <input id="campusName" class="form-control" [(ngModel)]="campusName" type="text" name="name" placeholder="Ingrese el nombre del campus">
+        </div>
+        <div class="input-containers" style="flex-basis: 50%;">
+          <label for="">Dirección <span style="display: none; color: red;" id="warn-direction">*</span></label>
+          <input id="campusDirection" class="form-control" [(ngModel)]="direction" type="text" name="name" placeholder="Ingrese su dirección">
+        </div>
+      </div>
+      <div class="d-flex">
+        <div class="input-containers" style="flex-basis: 50%;">
+          <label for="">Departamento <span style="display: none; color: red;" id="warn-department">*</span></label>
+          <select (change)="setCity()" class="form-control" name="" id="selectDepartment">
+            <option *ngFor="let department of departments" >{{department}}</option>
+          </select>
+        </div>
+        <div class="input-containers" style="flex-basis: 50%;">
+          <label for="">Ciudad <span style="display: none; color: red;" id="warn-city">*</span></label>
+          <select class="form-control" name="" id="selectCity">
+            <option *ngFor="let city of cities" >{{city}}</option>
+          </select></div>
+      </div>
+      <div class="d-flex">
+        <div class="input-containers d-flex flex-column gap-2" style="flex-basis: 50%;">
+          <div class="flex-grow-1 d-flex flex-column">
+            <label for="">Descripción <span style="display: none; color: red;" id="warn-description">*</span></label>
+            <textarea maxlength="250" id="campusDescription" class="form-control flex-grow-1" style="resize: none" [(ngModel)]="description" type="text" name="name" placeholder="Ingrese la Descripción del campus" name="" id="" cols="30" rows="3"></textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="space">
+      <div style="flex-basis: 50%;" class="card d-flex flex-column p-2">
+        <div style="flex-basis: 90%;">
+          <div>
+            <label for="">Nombre <span style="display: none; color: red;" id="warn-space-name">*</span></label>
+            <input class="form-control" [(ngModel)]="spaceName" type="text"  placeholder="Ingrese el nombre del espacio">
+          </div>
+          <div>
+            <label for="">Tarifa <span style="display: none; color: red;" id="warn-space-fee">*</span></label>
+            <input [(ngModel)]="spaceFee" placeholder="Ingrese el valor de la tarifa" id="stock-price" type="text" class="form-control" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" />
+          </div>
+          <div>
+            <label for="">Descripción <span style="display: none; color: red;" id="warn-space-desc">*</span></label>
+            <textarea maxlength="250" class="form-control" id="description-space" style="resize: none" [(ngModel)]="spaceDescription" type="text" name="name" placeholder="Ingrese la Descripción del Espacio" name="" cols="30" rows="4"></textarea>
+          </div>
+        </div>
+        <div style="flex-basis: 10%;" class="d-flex w-100">
+          <button class="btn btn-outline-primary w-100" (click)="addSpace()">Agregar Espacio</button>
+        </div>
+      </div>
+
+
+      <div style="flex-basis: 50%;" class="space-containers card p-2 d-flex flex-column">
+        <div style="flex-basis: 90%;">
+          <div class="input-containers text-center">
+            <h3>Lista de Espacios <span style="display: none; color: red;" id="warn-space-list">*</span></h3>
+          </div>
+          <div class="input-containers table-objs">
+            <table class="table" id="table-list">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nombre</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let space of spaces">
+                  <td>{{ space.id }}</td>
+                  <td>{{ space.name }}</td>
+                  <td class="td-img"><button (click)="deleteSpace(space.id)" class="btn-table"><img class="btn-table-img" src="../../assets/img-stock/deleteIcon.svg" alt=""></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div style="flex-basis: 10%;" class="d-flex w-100">
+          <button (click)="validationInfo()" class="btn btn-success w-100">Crear Sede</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-3">
+  <div class="modal fade" id=infoModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Información Insuficiente</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=successModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Creación Exitosa</h5>
+          <button (click)="finishNewCampus();" class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          La sede con sus respectivos espacios se han creado exitosamente
+        </div>
+        <div class="modal-footer">
+          <button (click)="finishNewCampus();" class="btn btn-success">Entendido!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

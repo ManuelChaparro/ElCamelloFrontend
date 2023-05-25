@@ -1,0 +1,86 @@
+<div class="position-absolute d-flex" style="height: 90%; width: 80%;">
+  <div *ngIf="listCampusPanel; else modifyCampusPanel" class="card-columns container-fluid d-flex w-100 flex-wrap gap-4 my-2" style="max-height: 500px; overflow: auto;">
+    <div *ngFor="let headquarter of campus_list" class="card flex-grow-1 w-100">
+      <div class="card-body d-flex flex-column gap-2">
+        <h5 class="card-title">{{headquarter.name}} - {{headquarter.id_sede}}</h5>
+        <p class="card-text">{{headquarter.description}}</p>
+        <h6 class="card-subtitle mb-2 text-muted">Cantidad de espacios: {{headquarter.quantity_spaces}}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{headquarter.address}}</h6>
+        <div class="d-flex flex-wrap d-flex gap-2 justify-content-start">
+          <div *ngFor="let schedule of headquarter.schedules" class="card">
+            <div class="card-header">{{schedule.day}}</div>
+            <div class="card-body d-flex gap-1">
+              Mañana:<br>{{schedule.first_open}} / {{schedule.first_close}}<br>Tarde:<br>{{schedule.second_open}} / {{schedule.second_close}}
+            </div>
+          </div>
+        </div>
+        <div class="d-flex gap-3">
+          <button #modifyCampusBtn [id]="headquarter.id_sede" (click)="showModifyCampus(modifyCampusBtn.id)" class="btn btn-outline-primary">Modificar Sede</button>
+          <button #deleteCampusBtn [id]="headquarter.id_sede" (click)="showDeleteModal(deleteCampusBtn.id)" class="btn btn-outline-danger">Eliminar</button>
+        </div>
+      </div>
+
+      <div class="container mt-3">
+        <div class="modal fade" id=deleteModal>
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Eliminación de sede</h5>
+                <button class="btn btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body" id="modal-body">
+                ¿ Está seguro que desea eliminar la sede ?
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-danger" (click)="deleteCampus()">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #modifyCampusPanel>
+    <div class="card m-2 w-100" >
+      <div class="card-header d-flex align-items-center text-center justify-content-center gap-2">
+        <h4>Modificación de la sede:    </h4> {{campusToModify.name}}
+      </div>
+      <div class="card-body d-flex flex-column gap-2">
+        <div class="d-flex flex-row gap-2 justify-content-between w-100">
+          <div class="d-flex flex-column" style="flex-basis: 50%;">
+            <label for="nameCampusModify">Nombre</label>
+            <input class="form-control" id="nameCampusModify" [(ngModel)]="campusToModify.name" type="text">
+          </div>
+          <div class="d-flex flex-column" style="flex-basis: 50%;">
+            <label for="addressCampusModify">Dirección</label>
+            <input class="form-control" id="addressCampusModify" [(ngModel)]="campusToModify.address" type="text">
+          </div>
+        </div>
+        <div class="d-flex flex-column w-100">
+          <label for="descriptionCampusModify">Descripción</label>
+          <textarea maxlength="250" class="form-control" id="descriptionCampusModify" style="resize: none; height: 200px;" [(ngModel)]="campusToModify.description" name="" id="" cols="30" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end gap-2">
+        <button (click)="changeToListCampusPanel()" class="btn btn-outline-danger">Cancelar</button>
+        <button (click)="saveModifyCampus()" class="btn btn-outline-success">Guardar cambios</button>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=modifyCampus>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modificación de Sede Exitosa</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          La Sede fue modificada exitosamente!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

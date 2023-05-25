@@ -10,6 +10,15 @@ import { HomeComponent } from './home/home.component';
 import { RecoverPassComponent } from './recover-pass/recover-pass.component';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { AdmincampusComponent } from './admincampus/admincampus.component';
+import { AdminbookingsComponent } from './adminbookings/adminbookings.component';
+import { AdminreportsComponent } from './adminreports/adminreports.component';
+import { AdminscheduleComponent } from './adminschedule/adminschedule.component';
+import { AdminstockComponent } from './adminstock/adminstock.component';
+import { AdminusersComponent } from './adminusers/adminusers.component';
+import { InfouserComponent } from './infouser/infouser.component';
+import { CampuslistComponent } from './campuslist/campuslist.component';
+import { NewcampusComponent } from './newcampus/newcampus.component';
 
 const appRoutes:Routes=[
   {path:'login', component:LoginComponent},
@@ -26,7 +35,16 @@ const appRoutes:Routes=[
     AdminhomeComponent,
     CreateUserComponent,
     HomeComponent,
-    RecoverPassComponent
+    RecoverPassComponent,
+    AdmincampusComponent,
+    AdminbookingsComponent,
+    AdminreportsComponent,
+    AdminscheduleComponent,
+    AdminstockComponent,
+    AdminusersComponent,
+    InfouserComponent,
+    CampuslistComponent,
+    NewcampusComponent
   ],
   imports: [
     BrowserModule,
