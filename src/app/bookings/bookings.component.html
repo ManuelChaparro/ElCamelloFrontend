@@ -1,13 +1,13 @@
-<div id="home" class="d-flex gap-4" style="width: 95vw; height: 100%;">
-  <div id="img-home" style="flex-basis: 20%;" class="bg-primary border rounded d-flex justify-content-center">
-    <img style="flex-basis: 70%;" src="../../assets/img-stock/LogoElCamello.svg" alt="">
+<div id="home" class="position-absolute d-flex gap-4" style="width: 100vw; height: 90%; left: 0;">
+  <div class="text-light d-flex flex-column justify-content-center align-items-center gap-1" style="flex-basis: 20%; background-image: url('../../assets/img/home.svg'); background-position: center; background-size: cover;">
+    <img style="filter: brightness(200);" src="https://elcamello.co/wp-content/uploads/2018/11/Logo-El-camello.svg" alt="">
   </div>
-  <div style="flex-basis: 80%;" class="d-flex flex-column w-100 h-100">
+  <div style="flex-basis: 75%;" class="d-flex flex-column w-100 h-100">
     <div class="d-flex flex-column justify-content-center align-items-start">
       <h1 class="display-4">Mis Reservas</h1>
       <p class="h6">En este espacio puedes encontrar la lista de reservas que realizaste a lo largo del tiempo...</p>
     </div>
-    <div class="container border rounded p-3 d-flex flex-wrap justify-content-center gap-3 w-100 overflow" style="overflow-y: auto;">
+    <div class="border rounded p-3 d-flex flex-wrap justify-content-center gap-3" style="overflow-y: auto;">
       <div *ngIf="bookingList == []" class="d-flex justify-content-center align-items-center h-100 w-100">
         <h1>No tiene reservas realizadas en este momento</h1>
       </div>
