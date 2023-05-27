@@ -1,1 +1,26 @@
-<p>recover-pass works!</p>
+<div class="position-absolute p-5" style="width: 100%; height: 100%; background-image: url('../../assets/img/login.svg'); background-size: cover;">
+  <div id="div_info" class="d-flex flex-column justify-content-evenly card p-3 w-100 h-100">
+    <div class="d-flex flex-column text-center">
+      <h1><i class="fas fa-user-check"></i></h1>
+      <h1 class="display-5 p-5">Ingresa tu Email y Documento para recuperar la contraseña.</h1>
+      <p>En breve te llegará un correo para reestablecerla.</p>
+      <label class="warn warn_email d-none" for="">Correo incorrecto</label>
+      <label class="warn warn_em_exist d-none" for="">El correo no existe</label>
+    </div>
+    <div class="px-5">
+      <form class="d-flex gap-2 justify-content-between align-items-center" action="">
+        <i id="email-icon" class="fas fa-envelope"></i><input (focus)="animationEmail()" maxlength="50" style="flex-basis: 40%;" [(ngModel)]="email" class="form-control" type="email" name="email" id="" placeholder="Ingresa tu Email" >
+        <i id="doc-icon" class="fas fa-lock"></i><input (focus)="animationDoc()" maxlength="20" style="flex-basis: 40%;" [(ngModel)]="document" class="form-control" type="text" name="document" id="" placeholder="Ingresa tu documento" type="number" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+        <button style="flex-basis: 10%;" (click)="sendRecovery()" class="btn btn-primary" type="submit">Reestablecer</button>
+      </form>
+    </div>
+  </div>
+  <div id="notice_recovery" class="d-none text-white d-flex justify-content-evenly">
+    <div class="d-flex flex-column">
+      <h1 class="display-5">¡Restauración realizada con éxito!</h1>
+      <h3>Tu nueva contraseña debe llegar a tu correo dentro de poco...</h3>
+      <h4>Redirigiendo a página de autenticación en <span class="routing"></span>...</h4>
+    </div>
+    <img style="filter: brightness(1.6) contrast(1.3);" src="https://elcamello.co/wp-content/uploads/2018/11/Logo-El-camello.svg" alt="">
+  </div>
+</div>
