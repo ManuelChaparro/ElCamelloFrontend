@@ -6,14 +6,14 @@ import { Router } from '@angular/router';
 import { InfouserComponent } from '../infouser/infouser.component';
 import { RoutesListService } from '../routes-list.service';
 import { CampusComponent } from '../campus/campus.component';
-import { CampuslistComponent } from '../campuslist/campuslist.component';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent  {
   public name: string | unknown;
   public surname: string;
   public number: number | undefined;
@@ -59,6 +59,17 @@ export class HomeComponent {
   ];
   indiceComponenteActual = 0;
   cambiarComponente(indice: number) {
+    const notification = document.querySelector('#notification') as HTMLElement;
+    notification.classList.add('d-none');
     this.indiceComponenteActual = indice;
   }
+
+  showOptions(): void{
+    const notification = document.querySelector('#notification') as HTMLElement;
+    notification.classList.remove('d-none');
+    setTimeout(() => {
+      notification.classList.add('d-none');
+    }, 5000);
+  }
 }
+

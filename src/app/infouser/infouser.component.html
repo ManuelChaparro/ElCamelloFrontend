@@ -1,1 +1,173 @@
-<p>infouser works!</p>
+<div class="d-flex flex-column align-items-center gap-2 container-fluid w-100">
+  <div class="card" style="width: 60vw;">
+    <h5 class="card-header">Opciones de Usuario</h5>
+    <div class="card-body row gap-3">
+      <div class="row gap-2">
+        <div class="col ">
+          <button (click)="changeModify(true)" class="col btn btn-secondary w-100">Modificar Perfil</button></div>
+        <div class="col ">
+          <button (click)="changeUserPassword()" class="col btn btn-warning w-100">Cambiar Contraseña</button></div>
+        <div class="col ">
+          <button (click)="deleteUser()" class="col btn btn-danger w-100">Eliminar Perfil</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="display: none; width: 60vw;" id="cardModify">
+    <h5 class="card-header">Editar Perfil</h5>
+    <div class="card-body d-flex flex-column gap-3">
+      <div class="d-flex gap-4">
+        <label style="flex-basis: 10%;" class="d-flex align-items-center justify-content-left">Nombres</label>
+        <input style="flex-basis: 90%;"  class="form-control" [(ngModel)]="name" type="text" name="name" placeholder="Ingrese su Nombre">
+      </div>
+      <div class="d-flex gap-4">
+        <label style="flex-basis: 10%;" class="d-flex align-items-center" for="">Apellidos</label>
+        <input style="flex-basis: 90%;"  class="form-control" [(ngModel)]="surname" type="text" name="surname" placeholder="Ingrese sus Apellidos">
+      </div>
+      <div class="d-flex gap-4">
+        <label style="flex-basis: 10%;" class="d-flex align-items-center" for="">Celular</label>
+        <input style="flex-basis: 90%;"  class="form-control" [(ngModel)]="number" name="cellphone" placeholder="Ingrese su Número" type="number" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+      </div>
+      <div class="d-flex gap-4">
+        <label style="flex-basis: 10%;" class="d-flex align-items-center" for="gender">Género</label>
+        <select style="flex-basis: 90%;" id="gender" class="form-select" #genders (change)="changeGender(genders.value)">
+          <option selected>Masculino</option>
+          <option>Femenino</option>
+          <option>Prefiero no decirlo</option>
+        </select></div>
+    </div>
+    <div >
+      <div class="card-footer d-flex justify-content-center gap-3">
+        <button (click)="changeModify(false)" class="btn btn-outline-danger w-50">Cerrar</button>
+        <button (click)="saveChanges()" class="btn btn-success w-50">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+  <div class="card" id="cardInfo">
+    <h5 class="card-header">Información de Perfil</h5>
+    <div class="card-body row gap-3">
+      <div class="row gap-2">
+        <div class="col ">
+          <label for="">Nombres</label>
+          <input disabled class="form-control" [(ngModel)]="name" type="text" name="name" placeholder="Ingrese su Nombre">
+        </div>
+        <div class="col ">
+          <label for="">Apellidos</label>
+          <input disabled class="form-control" [(ngModel)]="surname" type="text" name="surname" placeholder="Ingrese sus Apellidos">
+        </div>
+        <div class="col ">
+          <label for="">Celular</label>
+          <input disabled class="form-control" [(ngModel)]="number" name="cellphone" placeholder="Ingrese su Número" type="number" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+        </div>
+      </div>
+      <div class="row gap-2">
+        <div class="col ">
+          <label for="">Email</label>
+          <input disabled class="form-control" [(ngModel)]="email" type="text" name="email" placeholder="Ingrese su Email">
+        </div>
+        <div class="col ">
+          <label for="">Fecha de nacimiento</label>
+          <input disabled class="form-control" [(ngModel)]="birthdate" type="text" name="email" placeholder="Ingrese su Email">
+        </div>
+        <div class="col ">
+          <label for="">Rol</label>
+          <input disabled class="form-control" [(ngModel)]="rol" type="text" name="email" placeholder="Ingrese su Email">
+        </div>
+      </div>
+      <div class="row gap-2">
+        <div class="col ">
+          <label for="">Género</label>
+          <input disabled class="form-control" [(ngModel)]="gender" type="text" name="email" placeholder="Ingrese su Email">
+        </div>
+        <div class="col ">
+          <label for="">Tipo de documento</label>
+          <input disabled class="form-control" [(ngModel)]="document_type" type="text" name="email" placeholder="Ingrese su Email">
+        </div>
+        <div class="col ">
+          <label for="">Documento</label>
+          <input disabled class="form-control" [(ngModel)]="document" name="document" placeholder="Ingrese su Número de Documento" type="number" min="0" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=passModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cambiar Contraseña</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body gap-2 d-flex flex-column" id="modal-body">
+          <label>Para cambiar la contraseña de tu cuenta, es necesario que ingreses tu correo, tu contraseña actual y la nueva contraseña que deseas...</label>
+          <div class="d-flex flex-column gap-2">
+            <div>
+              <label for="">Email</label>
+              <input class="form-control" #passEmail type="text" name="email" placeholder="Ingrese su Email">
+            </div>
+            <div>
+              <label for="">Contraseña Actual</label>
+              <input class="form-control" #actualPass type="password" name="password" placeholder="Ingrese su actual contraseña">
+            </div>
+            <div>
+              <label for="">Nueva Contraseña</label>
+              <input class="form-control" #newPass type="password" name="password" placeholder="Ingrese su nueva contraseña">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button data-bs-dismiss="modal" (click)="changePassword(passEmail.value, actualPass.value, newPass.value)" class="btn btn-warning">Confirmar Cambio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-3">
+  <div class="modal fade" id=deleteModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminación de Usuario</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body d-flex flex-column gap-2"id="modal-body">
+          <label>Para eliminar tu cuenta, es necesario que ingreses tu correo y contraseña para confirmar tu identidad...</label>
+          <div class="d-flex flex-column gap-2">
+            <div>
+              <label for="">Email</label>
+              <input class="form-control" #deleteEmail type="text" name="email" placeholder="Ingrese su Email">
+            </div>
+            <div>
+              <label for="">Contraseña</label>
+              <input class="form-control" #deletePassword type="password" name="password" placeholder="Ingrese su Contraseña">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="deleteAccount(deleteEmail.value, deletePassword.value)" class="btn btn-danger">Sí, estoy seguro !</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-3">
+  <div class="modal fade" id=infoModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modificación Exitosa</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          ¡ El usuario ha sido modificado exitosamente !
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
