@@ -1,1 +1,117 @@
-<p>adminreports works!</p>
+<div *ngIf="frame === 0" class="container-fluid d-flex flex-column">
+  <h1 class="display-6"><i class="fas fa-file"></i> Reportes</h1>
+  <div style="overflow-y: auto; max-height: 75vh; width: 100%;">
+    <div class="gap-3 border d-flex flex-column justify-content-start align-items-start flex-wrap rounded bg-white w-100 h-100 p-2 px-4" >
+      <div class="d-flex flex-column">
+        <h4>Ganancias</h4>
+        <div class="d-flex flex-wrap gap-2">
+          <button (click)="moneyPerCampus()" class="card btn btn-outline-dark">
+            <div class="card-body">
+              <h4 class="m-0"><i class="fas fa-wallet"></i> Ganancias por Sede</h4>
+            </div>
+          </button>
+          <button (click)="quantityBillState()" class="card btn btn-outline-dark">
+            <div class="card-body">
+              <h4 class="m-0"><i class="fas fa-money-bill"></i> Estado de Facturas</h4>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="d-flex flex-column">
+        <h4>Clientes</h4>
+        <div class="d-flex flex-wrap gap-2">
+          <button (click)="avgPerUsersAge()" class="card btn btn-outline-dark">
+            <div class="card-body">
+              <h4 class="m-0"><i class="fas fa-signature"></i> Promedio de Edad</h4>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="d-flex flex-column">
+        <h4>Sedes</h4>
+        <div class="d-flex flex-wrap gap-2">
+          <button (click)="modalSpacesPerCampus()" class="card btn btn-outline-dark">
+            <div class="card-body">
+              <h4 class="m-0"><i class="fas fa-warehouse"></i> Espacios por Sede</h4>
+            </div>
+          </button>
+          <button (click)="getClientQuantityPerHeadquarter()" class="card btn btn-outline-dark">
+            <div class="card-body">
+              <h4 class="m-0"><i class="fas fa-users"></i> Clientes por Sede</h4>
+            </div>
+          </button>
+          <button (click)="inventaryValuePerHeadquarter()" class="card btn btn-outline-dark">
+            <div class="card-body">
+              <h4 class="m-0"><i class="fas fa-cubes"></i> Valor de Inventarios</h4>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="d-flex flex-column">
+        <h4>Reservas</h4>
+        <div class="d-flex flex-wrap gap-2">
+          <button (click)="getBookingPerMonth()"  class="card btn btn-outline-dark">
+            <div class="card-body">
+              <h4 class="m-0"><i class="fas fa-bookmark"></i> Reservas por Mes</h4>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=infoModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Elige la sede</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <select class="form-control" name="" id="campus">
+            <option *ngFor="let campus of campusList">{{campus.id_sede}} - {{campus.nombre_sede}}</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button data-bs-dismiss="modal" (click)="spacesPerCampus()" class="btn btn-success">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="frame === 1" class="gap-3 p-2 d-flex flex-column justify-content-center align-items-start h-100 w-100" >
+  <button (click)="setFrame(0)" class="btn btn-dark"><i class="fas fa-arrow-left"></i> Volver a Reportes</button>
+  <h1>{{titleGraphic}}</h1>
+  <div id="container" class="card d-flex justify-content-center align-items-center border rounded w-100" style="height: 60vh;">
+    <div id="loading" class="spinner-grow text-warning" role="status" style="width: 100px; height: 100px;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <ngx-charts-bar-vertical id="graphic-bar" class="card-body m-0 p-2 d-none"
+      [view]="view"
+      scheme="fire"
+      [results]="data"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+    <ngx-charts-advanced-pie-chart id="graphic-pie" class="card-body m-0 p-2 d-none"
+      [view]="view"
+      scheme="fire"
+      [results]="data"
+      [gradient]="gradient"
+      (select)="onSelect($event)"
+      (activate)="onActivate($event)"
+      (deactivate)="onDeactivate($event)"
+      >
+    </ngx-charts-advanced-pie-chart>
+  </div>
+</div>

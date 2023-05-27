@@ -23,8 +23,8 @@
           <h6>Valor Pago: ${{booking.value}}</h6>
           <h6>Estado: <span *ngIf="booking.state == 'PAGO'" style="color: green;">{{booking.state}}</span> <span *ngIf="booking.state == 'PENDIENTE'" style="color: red;">{{booking.state}}</span></h6>
         </div>
-        <div class="card-footer d-flex gap-2 justify-content-end">
-          <button (click)="showModifyModal(booking)" class="btn btn-dark" *ngIf="booking.state == 'PENDIENTE'">Modificar</button>
+        <div *ngIf="booking.state == 'PENDIENTE'" class="card-footer d-flex gap-2 justify-content-end">
+          <button (click)="showModifyModal(booking)" class="btn btn-dark">Modificar</button>
           <button (click)="modalDelete(booking.booking_id)" class="btn btn-outline-danger">Eliminar</button>
         </div>
       </div>
