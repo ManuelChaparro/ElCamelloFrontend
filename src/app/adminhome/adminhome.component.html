@@ -1,4 +1,4 @@
-<header class="position-absolute w-100 bg-dark text-white d-flex w-100 px-4 border-bottom background" style="top: 0; left: 0; height: 10%;">
+<div class="position-absolute text-white d-flex px-4 border-bottom background" style="top: 0; left: 0; height: 10%; width: 100vw; background-color: #9A340C;">
   <div class="d-flex flex-row justify-content-center align-items-center" style="flex-basis: 25%;">
     <h5 class="d-flex justify-content-center align-items-center gap-2 m-0"><i class="fas fa-suitcase"></i> ADMINISTRADOR</h5>
   </div>
@@ -8,9 +8,9 @@
   <div class="d-flex flex-row justify-content-center align-items-center w-100" style="flex-basis: 25%;">
     <button (click)="showOptions()" placement="bottom" class="btn btn-outline-light d-flex gap-2 justify-content-center align-items-center"><i class="fas fa-user"></i> {{name}}</button>
   </div>
-</header>
-<body class="position-absolute w-100 d-flex " style="top: 10%; left: 0; height: 90%;">
-  <div style="flex-basis: 15%;" class="p-2 d-flex flex-column gap-2 h-100 bg-dark border-right border-dark">
+</div>
+<div class="position-absolute d-flex " style="top: 10%; left: 0; height: 90%; width: 100vw; background-color: #9A340C;">
+  <div style="flex-basis: 15%;" class="p-2 d-flex flex-column gap-2 h-100 border-right border-dark">
     <button (click)="cambiarComponente(0)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-building"></i>Sedes</button>
     <button (click)="cambiarComponente(1)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-users"></i>Usuarios</button>
     <button (click)="cambiarComponente(4)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-boxes"></i>Inventario</button>
@@ -18,12 +18,12 @@
     <button (click)="cambiarComponente(2)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-receipt"></i>Reservas</button>
     <button (click)="cambiarComponente(3)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-file"></i>Reportes</button>
   </div>
-  <div class="bg-light p-2 px-3 container h-100 m-0">
-    <ng-container *ngComponentOutlet="componentes[indiceComponenteActual].componente"></ng-container>
+  <div style="flex-grow: 1;" class="bg-light p-2 px-3 container w-100 h-100 m-0">
+    <ng-container class="w-100" *ngComponentOutlet="componentes[indiceComponenteActual].componente"></ng-container>
   </div>
-</body>
+</div>
 
-<div id="notification" class=" d-none position-absolute alert bg-dark hide" role="alert" style="top: 11%; left: 79%; width: 20%;">
+<div id="notification" class=" d-none position-absolute alert hide" role="alert" style="top: 11%; left: 79%; width: 20%; background-color: #9A340C;">
   <div class="w-100 d-flex gap-2 justify-content-between ">
     <button (click)="cambiarComponente(5)" style="flex-basis: 45%;" class="btn btn-outline-light d-flex gap-2 align-items-center"><i class="fas fa-user"></i> Perfil</button>
     <button (click)="logout()" style="flex-basis: 45%;" class="text-white btn btn-outline-danger d-flex gap-2 align-items-center"><i class="fas fa-exclamation"></i> Cerrar Sesión</button>

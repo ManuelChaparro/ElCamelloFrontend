@@ -58,9 +58,9 @@ export class NewbookingComponent {
 
   private showNotification(): void{
     const notification = document.querySelector('#notification') as HTMLElement;
-    notification.classList.add('show');
+    notification.classList.remove('d-none');
     setTimeout(() => {
-      notification.classList.remove('show');
+      notification.classList.add('d-none');
     }, 5000);
   }
 
@@ -133,18 +133,18 @@ export class NewbookingComponent {
   private showNotificationError(): void{
     const notificationError = document.querySelector('#notification-error') as HTMLElement;
     const notification = document.querySelector('#notification') as HTMLElement;
-    notification.classList.remove('show');
-    notificationError.classList.add('show');
+    notification.classList.add('d-none');
+    notificationError.classList.remove('d-none');
     setTimeout(() => {
-      notificationError.classList.remove('show');
+      notificationError.classList.add('d-none');
     }, 5000);
   }
 
   private showNotificationErrorTime(): void{
     const notificationError = document.querySelector('#notification-error-time') as HTMLElement;
-    notificationError.classList.add('show');
+    notificationError.classList.remove('d-none');
     setTimeout(() => {
-      notificationError.classList.remove('show');
+      notificationError.classList.add('d-none');
     }, 5000);
   }
 

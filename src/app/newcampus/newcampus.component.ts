@@ -85,8 +85,6 @@ export class NewcampusComponent {
   }
 
   ngOnInit() {
-    const space = document.querySelector('#space') as HTMLElement;
-    space.style.display = 'none';
     const url = this.routesList.getDepartments();
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -383,13 +381,15 @@ export class NewcampusComponent {
   changePanel(option: number){
     const info = document.querySelector('#info') as HTMLElement;
     const space = document.querySelector('#space') as HTMLElement;
+    console.log(space);
+
     const miSelect = document.querySelector('#selectObjSpace') as HTMLSelectElement;
     if(option === 0){
-      info.style.display = '';
-      space.style.display = 'none';
+      info.classList.remove('d-none');
+      space.classList.add('d-none');
     }else if(option === 1){
-      info.style.display = 'none';
-      space.style.display = '';
+      info.classList.add('d-none');
+      space.classList.remove('d-none');
       miSelect.value = 'Mueble';
     }
   }

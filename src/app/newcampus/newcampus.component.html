@@ -1,11 +1,11 @@
-<div id="container" class="position-absolute" style="width: 80%; height: 80%;">
-  <div id="btns-option">
-    <button (click)="changePanel(0)">Información Sede</button>
-    <button (click)="changePanel(1)">Espacios</button>
+<div id="container" class="position-absolute d-flex flex-column gap-3 p-2" style="width: 80%; height: 90%;">
+  <div style="flex-basis: 10%;" class="card p-2 d-flex flex-row gap-5 justify-content-center">
+    <button style="flex-basis: 45%;" class="btn btn-outline-dark" (click)="changePanel(0)">Información Sede</button>
+    <button style="flex-basis: 45%;" class="btn btn-outline-dark" (click)="changePanel(1)">Espacios</button>
   </div>
-  <div id="data">
-    <div id="info">
-      <div class="d-flex">
+  <div style="flex-basis: 90%;" id="data">
+    <div id="info" class="d-flex flex-column justify-content-between gap-3 card p-4 h-100">
+      <div class="d-flex gap-3">
         <div class="input-containers" style="flex-basis: 50%;">
           <label for="campusName">Nombres <span style="display: none; color: red;" id="warn-name">*</span></label>
           <input id="campusName" class="form-control" [(ngModel)]="campusName" type="text" name="name" placeholder="Ingrese el nombre del campus">
@@ -15,7 +15,7 @@
           <input id="campusDirection" class="form-control" [(ngModel)]="direction" type="text" name="name" placeholder="Ingrese su dirección">
         </div>
       </div>
-      <div class="d-flex">
+      <div class="d-flex gap-3">
         <div class="input-containers" style="flex-basis: 50%;">
           <label for="">Departamento <span style="display: none; color: red;" id="warn-department">*</span></label>
           <select (change)="setCity()" class="form-control" name="" id="selectDepartment">
@@ -28,19 +28,18 @@
             <option *ngFor="let city of cities" >{{city}}</option>
           </select></div>
       </div>
-      <div class="d-flex">
-        <div class="input-containers d-flex flex-column gap-2" style="flex-basis: 50%;">
+      <div class="d-flex w-100">
+        <div class="input-containers d-flex flex-column gap-2" style="flex-basis: 100%;">
           <div class="flex-grow-1 d-flex flex-column">
             <label for="">Descripción <span style="display: none; color: red;" id="warn-description">*</span></label>
-            <textarea maxlength="250" id="campusDescription" class="form-control flex-grow-1" style="resize: none" [(ngModel)]="description" type="text" name="name" placeholder="Ingrese la Descripción del campus" name="" id="" cols="30" rows="3"></textarea>
+            <textarea maxlength="250" id="campusDescription" class="form-control flex-grow-1" style="resize: none" [(ngModel)]="description" type="text" name="name" placeholder="Ingrese la Descripción del campus" name="" id="" cols="30" rows="5"></textarea>
           </div>
         </div>
-
       </div>
     </div>
-    <div id="space">
-      <div style="flex-basis: 50%;" class="card d-flex flex-column p-2">
-        <div style="flex-basis: 90%;">
+    <div id="space" class="d-none d-flex gap-2 h-100">
+      <div style="flex-basis: 50%;" class="card d-flex flex-column p-3 gap-4">
+        <div style="flex-basis: 90%;" class="d-flex flex-column justify-content-between">
           <div>
             <label for="">Nombre <span style="display: none; color: red;" id="warn-space-name">*</span></label>
             <input class="form-control" [(ngModel)]="spaceName" type="text"  placeholder="Ingrese el nombre del espacio">
@@ -51,7 +50,7 @@
           </div>
           <div>
             <label for="">Descripción <span style="display: none; color: red;" id="warn-space-desc">*</span></label>
-            <textarea maxlength="250" class="form-control" id="description-space" style="resize: none" [(ngModel)]="spaceDescription" type="text" name="name" placeholder="Ingrese la Descripción del Espacio" name="" cols="30" rows="4"></textarea>
+            <textarea maxlength="250" class="form-control" id="description-space" style="resize: none" [(ngModel)]="spaceDescription" type="text" name="name" placeholder="Ingrese la Descripción del Espacio" name="" cols="30" rows="6"></textarea>
           </div>
         </div>
         <div style="flex-basis: 10%;" class="d-flex w-100">
@@ -60,8 +59,8 @@
       </div>
 
 
-      <div style="flex-basis: 50%;" class="space-containers card p-2 d-flex flex-column">
-        <div style="flex-basis: 90%;">
+      <div style="flex-basis: 50%;" class="p-3 space-containers card d-flex flex-column gap-4">
+        <div class="border rounded p-2" style="flex-basis: 90%;">
           <div class="input-containers text-center">
             <h3>Lista de Espacios <span style="display: none; color: red;" id="warn-space-list">*</span></h3>
           </div>
@@ -78,7 +77,7 @@
                 <tr *ngFor="let space of spaces">
                   <td>{{ space.id }}</td>
                   <td>{{ space.name }}</td>
-                  <td class="td-img"><button (click)="deleteSpace(space.id)" class="btn-table"><img class="btn-table-img" src="../../assets/img-stock/deleteIcon.svg" alt=""></button></td>
+                  <td class="td-img"><button (click)="deleteSpace(space.id)" class="btn" style="border: none;"><i class="fas fa-trash"></i></button></td>
                 </tr>
               </tbody>
             </table>

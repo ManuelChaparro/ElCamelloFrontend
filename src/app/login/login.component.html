@@ -5,17 +5,24 @@
   </div>
   <div class="bg-light p-5" style="flex-basis: 50%;">
     <div style="background-color: white;" class="gap-3 border rounded w-100 h-100 d-flex flex-column justify-content-evenly align-items-center">
-      <h1 class="display-5"><strong>El Camello</strong> Coworking</h1>
-      <div class="border rounded d-flex flex-column p-2 gap-2 w-75">
-        <div class="d-flex flex-column">
-          <label for="email">Email</label>
-          <input maxlength="50" id="email" class="form-control" [(ngModel)]="user" type="email" name="email" placeholder="Ingrese su Email">
-          <label for="pass">Contraseña</label>
-          <input id="pass" class="form-control" [(ngModel)]="password" type="password" name="password" placeholder="Ingrese su Contraseña">
-        </div>
+      <div class="d-flex flex-column text-center">
+        <h1 style="color: rgb(118,19,0);" class="display-5"><strong>El Camello</strong> Coworking</h1>
+        <h4>Inicio de Sesión</h4>
+      </div>
+      <div class="border rounded d-flex flex-column p-2 gap-3 w-75">
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex flex-column w-100">
+            <label for="email">Email</label>
+            <input maxlength="50" id="email" class="form-control" [(ngModel)]="user" type="email" name="email" placeholder="Ingrese su Email">
+          </div>
+            <div class="d-flex flex-column w-100">
+              <label for="pass">Contraseña</label>
+              <input id="pass" class="form-control" [(ngModel)]="password" type="password" name="password" placeholder="Ingrese su Contraseña">
+            </div>
+          </div>
         <div class="d-flex gap-2 w-100 justify-content-evenly ">
           <button style="flex-basis: 45%;" (click)="goToCreateUser()" class="btn btn-dark" type="button">Crear cuenta</button>
-          <button style="flex-basis: 45%;" (click)="validateLogin()" class="btn btn-success" type="submit">Iniciar sesión</button>
+          <button style="flex-basis: 45%; background-color: rgb(118,19,0); border: none;" (click)="validateLogin()" class="btn btn-success" type="submit">Iniciar sesión</button>
         </div>
       </div>
       <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="">¿Olvidaste tu contraseña?</a>
