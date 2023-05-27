@@ -1,1 +1,11 @@
-<p>adminschedule works!</p>
+<div id="container row">
+  <div class="d-flex gap-3 py-1 text-center border-bottom align-items-center justify-content-center">
+    <h4 style="flex-basis: 50%;">Horarios</h4>
+    <div style="flex-basis: 50%;">
+
+    </div>
+  </div>
+  <div id="data">
+    <ng-container *ngComponentOutlet="componentes[indiceComponenteActual].componente"></ng-container>
+  </div>
+</div>

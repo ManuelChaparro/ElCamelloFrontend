@@ -122,17 +122,17 @@ export class AdminusersComponent {
     const div_modify = document.querySelector('#modify-user') as HTMLElement;
     if(option===0){
       this.cleanData();
-      div_create.style.display = 'flex';
-      div_list.style.display = 'none';
-      div_modify.style.display = 'none';
+      div_create.classList.remove('d-none');
+      div_list.classList.add('d-none');
+      div_modify.classList.add('d-none');
     }else if(option === 1){
-      div_create.style.display = 'none';
-      div_modify.style.display = 'none';
-      div_list.style.display = '';
+      div_create.classList.add('d-none');
+      div_list.classList.remove('d-none');
+      div_modify.classList.add('d-none');
     }else{
-      div_create.style.display = 'none';
-      div_modify.style.display = 'flex';
-      div_list.style.display = 'none';
+      div_create.classList.add('d-none');
+      div_list.classList.add('d-none');
+      div_modify.classList.remove('d-none');
     }
   }
 
@@ -240,26 +240,26 @@ export class AdminusersComponent {
   }
 
   public validateInputs(){
-    const warn_name = document.querySelector('.warn_name') as HTMLElement;
-    const warn_surname = document.querySelector('.warn_surname') as HTMLElement;
-    const warn_phone = document.querySelector('.warn_phone') as HTMLElement;
-    const warn_doc = document.querySelector('.warn_doc') as HTMLElement;
+    const warn_name = document.querySelector('#warn_name') as HTMLElement;
+    const warn_surname = document.querySelector('#warn_surname') as HTMLElement;
+    const warn_phone = document.querySelector('#warn_phone') as HTMLElement;
+    const warn_doc = document.querySelector('#warn_doc') as HTMLElement;
     if(this.name == ''){
-      warn_name.style.display = 'flex';
+      warn_name.classList.remove('d-none');
     }else{
-      warn_name.style.display = 'none';
+      warn_name.classList.add('d-none');
       if(this.surname == ''){
-        warn_surname.style.display = 'flex';
+        warn_surname.classList.remove('d-none');
       }else{
-        warn_surname.style.display = 'none';
+        warn_surname.classList.add('d-none');
         if(this.number == undefined){
-          warn_phone.style.display = 'flex';
+          warn_phone.classList.remove('d-none');
         }else{
-          warn_phone.style.display = 'none';
+          warn_phone.classList.add('d-none');
           if(this.document == undefined){
-            warn_doc.style.display = 'flex';
+            warn_doc.classList.remove('d-none');
           }else{
-            warn_doc.style.display = 'none';
+            warn_doc.classList.add('d-none');
             return true;
           }
         }
@@ -269,48 +269,48 @@ export class AdminusersComponent {
   }
 
   public validationBirthdate(){
-    const warn_birth = document.querySelector('.warn_birth') as HTMLElement;
-    const warn_birth_more = document.querySelector('.warn_birth_more') as HTMLElement;
+    const warn_birth = document.querySelector('#warn_birth') as HTMLElement;
+    const warn_birth_more = document.querySelector('#warn_birth_more') as HTMLElement;
     if(this.birthdate == ''){
-      warn_birth.style.display = 'flex';
+      warn_birth.classList.remove('d-none');
       return false;
     }else{
-      warn_birth.style.display = 'none';
+      warn_birth.classList.add('d-none');
       const actualDate: Date = new Date();
       actualDate.setFullYear(actualDate.getFullYear() - 16 );
       if(new Date(this.birthdate).getTime() <= actualDate.getTime()){
-        warn_birth_more.style.display = 'none';
+        warn_birth_more.classList.add('d-none');
         return true;
       }else{
-        warn_birth_more.style.display = 'flex';
+        warn_birth_more.classList.remove('d-none');
       }
     }
     return false;
   }
 
   public validationEmail(){
-    const warn_email = document.querySelector('.warn_email') as HTMLElement;
+    const warn_email = document.querySelector('#warn_email') as HTMLElement;
     const email_test = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(email_test.test(this.email)){
-      warn_email.style.display = 'none';
+      warn_email.classList.add('d-none')
       return true;
     }else{
-      warn_email.style.display = 'flex';
+      warn_email.classList.remove('d-none')
       return false;
     }
   }
 
   public validationPass(){
-    const warn_pass = document.querySelector('.warn_pass') as HTMLElement;
-    const warn_con_pass = document.querySelector('.warn_con_pass') as HTMLElement;
+    const warn_pass = document.querySelector('#warn_pass') as HTMLElement;
+    const warn_con_pass = document.querySelector('#warn_con_pass') as HTMLElement;
     if(this.password.length < 8){
-      warn_pass.style.display = 'flex';
+      warn_pass.classList.remove('d-none');
     }else{
-      warn_pass.style.display = 'none';
+      warn_pass.classList.add('d-none');
       if(this.password != this.confirm_pass){
-        warn_con_pass.style.display = 'flex';
+        warn_con_pass.classList.remove('d-none');
       }else{
-        warn_con_pass.style.display = 'none';
+        warn_con_pass.classList.add('d-none');
         return true;
       }
     }

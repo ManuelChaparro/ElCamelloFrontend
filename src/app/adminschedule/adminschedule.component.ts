@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NewscheduleComponent } from '../newschedule/newschedule.component';
 
 @Component({
   selector: 'app-adminschedule',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./adminschedule.component.css']
 })
 export class AdminscheduleComponent {
-
+  componentes = [
+    { nombre: 'Componente 1', componente: NewscheduleComponent}
+  ];
+  indiceComponenteActual = 0;
+  cambiarComponente(indice: number) {
+    this.indiceComponenteActual = indice;
+  }
 }

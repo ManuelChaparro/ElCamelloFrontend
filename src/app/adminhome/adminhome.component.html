@@ -6,13 +6,7 @@
     <a style="text-decoration: none;" href="/adminHome"><h1 class="text-white m-0"><strong>El Camello</strong> Coworking</h1></a>
   </div>
   <div class="d-flex flex-row justify-content-center align-items-center w-100" style="flex-basis: 25%;">
-    <button placement="bottom" class="btn btn-outline-light d-flex gap-2 justify-content-center align-items-center"><i class="fas fa-user"></i> {{name}}</button>
-    <ng-template #popoverContent>
-      <div class="d-flex flex-column gap-2">
-        <button (click)="cambiarComponente(5)" type="button" class="btn btn-outline-primary mr-2"><i class="fas fa-user"></i> Ver Perfil</button>
-        <button (click)="logout()" type="button" class="btn btn-outline-danger"><i class="fas fa-right-from-bracket"></i> Cerrar Sesión</button>
-      </div>
-    </ng-template>
+    <button (click)="showOptions()" placement="bottom" class="btn btn-outline-light d-flex gap-2 justify-content-center align-items-center"><i class="fas fa-user"></i> {{name}}</button>
   </div>
 </header>
 <body class="position-absolute w-100 d-flex " style="top: 10%; left: 0; height: 90%;">
@@ -28,3 +22,12 @@
     <ng-container *ngComponentOutlet="componentes[indiceComponenteActual].componente"></ng-container>
   </div>
 </body>
+
+<div id="notification" class=" d-none position-absolute alert bg-dark hide" role="alert" style="top: 11%; left: 79%; width: 20%;">
+  <div class="w-100 d-flex gap-2 justify-content-between ">
+    <button (click)="cambiarComponente(5)" style="flex-basis: 45%;" class="btn btn-outline-light d-flex gap-2 align-items-center"><i class="fas fa-user"></i> Perfil</button>
+    <button (click)="logout()" style="flex-basis: 45%;" class="text-white btn btn-outline-danger d-flex gap-2 align-items-center"><i class="fas fa-exclamation"></i> Cerrar Sesión</button>
+  </div>
+ </div>
+
+

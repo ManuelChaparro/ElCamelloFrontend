@@ -54,7 +54,6 @@ export class NewstockComponent {
       this.countObjs++;
       this.showNotification(this.stockName);
       this.clearInputs();
-
     }else{
       const modal = document.querySelector('#myModal') as HTMLElement;
       const bootstrapModal = new bootstrap.Modal(modal);
@@ -66,9 +65,9 @@ export class NewstockComponent {
     const notification = document.querySelector('#notification') as HTMLElement;
     const notification_name = document.querySelector('#notification_name') as HTMLSpanElement;
     notification_name.innerText = stockName;
-    notification.classList.add('show');
+    notification.classList.remove('d-none');
     setTimeout(() => {
-      notification.classList.remove('show');
+      notification.classList.add('d-none');
     }, 5000);
   }
 

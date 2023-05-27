@@ -6,8 +6,8 @@
         <p class="card-text">{{headquarter.description}}</p>
         <h6 class="card-subtitle mb-2 text-muted">Cantidad de espacios: {{headquarter.quantity_spaces}}</h6>
         <h6 class="card-subtitle mb-2 text-muted">{{headquarter.address}}</h6>
-        <div class="d-flex flex-wrap d-flex gap-2 justify-content-start">
-          <div *ngFor="let schedule of headquarter.schedules" class="card">
+        <div class="d-flex flex-wrap d-flex gap-3 justify-content-center">
+          <div style="flex-basis: 18%;" *ngFor="let schedule of headquarter.schedules" class="card">
             <div class="card-header">{{schedule.day}}</div>
             <div class="card-body d-flex gap-1">
               Mañana:<br>{{schedule.first_open}} / {{schedule.first_close}}<br>Tarde:<br>{{schedule.second_open}} / {{schedule.second_close}}

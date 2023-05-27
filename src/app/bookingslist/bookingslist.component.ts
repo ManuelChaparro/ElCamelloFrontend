@@ -263,9 +263,9 @@ export class BookingslistComponent {
           const notification = document.querySelector('#deleteBkngNtf') as HTMLElement;
           const notification_name = document.querySelector('#deleteBookingSpan') as HTMLSpanElement;
           notification_name.innerText = this.bookingIdToDelete.toString();
-          notification.classList.add('show');
+          notification.classList.remove('d-none');
           setTimeout(() => {
-            notification.classList.remove('show');
+            notification.classList.add('d-none');
           }, 5000);
           this.bookingIdToDelete = -1;
         }

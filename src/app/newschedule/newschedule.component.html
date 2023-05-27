@@ -1,0 +1,135 @@
+<div class="container d-flex gap-4 my-2">
+  <div style="flex-basis: 35%;" class="input-containers gap-2 d-flex flex-column">
+    <label for="">Sede<span style="display: none; color: red;" id="warn-schedule">*</span></label>
+    <select (change)="updateByCampus(false)" class="form-select" id="select_campus">
+      <option *ngFor="let campus of campus_list" selected>{{campus.id_sede}} - {{campus.nombre_sede}}</option>
+    </select>
+    <label for="">Horario <span style="display: none; color: red;" id="warn-schedule">*</span></label>
+    <select class="form-select" #schedule>
+      <option selected>Lunes</option>
+      <option>Martes</option>
+      <option>Miércoles</option>
+      <option>Jueves</option>
+      <option>Viernes</option>
+      <option>Sábado</option>
+      <option>Domingo</option>
+    </select>
+    <div id="schedule-time" class="gap-2 d-flex flex-row">
+      <div class="card p-3" style="flex-basis: 50%;">
+        <label class="h6 text-center" for="">Mañana</label>
+        <div class="input-schedule">
+          <label for="">Apertura</label>
+          <input class="form-control" #firstOpen type="time" id="firstOpen" name="firstOpen" required>
+          <label for="">Cierre</label>
+          <input  class="form-control" #firstClose type="time" id="firstClose" name="firstClose" required>
+        </div>
+      </div>
+      <div class="card p-3" style="flex-basis: 50%;">
+        <label class="h6 text-center" for="">Tarde</label>
+        <div class="input-schedule">
+          <label for="">Apertura</label>
+          <input class="form-control" #secondOpen type="time" id="secondOpen" name="secondOpen" required>
+          <label for="">Cierre</label>
+          <input class="form-control" #secondClose type="time" id="secondClose" name="secondClose" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <button class="btn btn-outline-success" style="flex-basis: 100%;" (click)="saveSchedule(schedule.value, firstOpen.value, firstClose.value, secondOpen.value, secondClose.value)">Crear horario</button>
+    </div>
+  </div>
+  <div style="flex-basis: 65%;" class="card">
+    <div class="card-header">
+      <h6>Horario de: {{campus_selected}}</h6>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th colspan="2">AM</th>
+            <th colspan="2">PM</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let schedule of campus_schedule">
+            <th>{{schedule.dia}}</th>
+            <td>{{schedule.hora_apertura_am}}</td>
+            <td>{{schedule.hora_cierre_am}}</td>
+            <td>{{schedule.hora_apertura_pm}}</td>
+            <td>{{schedule.hora_cierre_pm}}</td>
+            <td><button (click)="showDeleteSchedule(schedule.id_horario)" class="btn btn-close"></button></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=infoModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sede sin horarios</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          La sede "{{campus_selected}}" no cuenta con ningun horario, se aconseja agregar
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-bs-dismiss="modal">Entendido!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=errorScheduleModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Horario repetido</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          La sede "{{campus_selected}}" ya cuenta con un horario para el día que intenta asignar
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" data-bs-dismiss="modal">Entendido!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="modal fade" id=deleteScheduleModal>
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar horario</h5>
+          <button class="btn btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          ¿Está seguro que desea eliminar el horario?
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-dark" data-bs-dismiss="modal">Cancelar</button>
+          <button (click)="deleteSchedule()" class="btn btn-outline-danger" data-bs-dismiss="modal">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

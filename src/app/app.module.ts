@@ -25,6 +25,7 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { CampusComponent } from './campus/campus.component';
 import { BookingslistComponent } from './bookingslist/bookingslist.component';
 import { NewbookingComponent } from './newbooking/newbooking.component';
+import { NewscheduleComponent } from './newschedule/newschedule.component';
 
 const appRoutes:Routes=[
   {path:'login', component:LoginComponent},
@@ -56,7 +57,8 @@ const appRoutes:Routes=[
     BookingsComponent,
     CampusComponent,
     BookingslistComponent,
-    NewbookingComponent
+    NewbookingComponent,
+    NewscheduleComponent
   ],
   imports: [
     BrowserModule,

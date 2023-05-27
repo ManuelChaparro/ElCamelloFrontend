@@ -118,4 +118,12 @@ export class AdminhomeComponent {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
+
+  showOptions(): void{
+    const notification = document.querySelector('#notification') as HTMLElement;
+    notification.classList.remove('d-none');
+    setTimeout(() => {
+      notification.classList.add('d-none');
+    }, 5000);
+  }
 }
