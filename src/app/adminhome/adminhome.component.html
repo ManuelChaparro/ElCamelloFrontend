@@ -9,8 +9,8 @@
     <button (click)="showOptions()" placement="bottom" class="btn btn-outline-light d-flex gap-2 justify-content-center align-items-center"><i class="fas fa-user"></i> {{name}}</button>
   </div>
 </div>
-<div class="position-absolute d-flex " style="top: 10%; left: 0; height: 90%; width: 100vw; background-color: #9A340C;">
-  <div style="flex-basis: 15%;" class="p-2 d-flex flex-column gap-2 h-100 border-right border-dark">
+<div class="position-absolute d-flex " style="top: 10%; left: 0; height: 90%; width: 100vw; ">
+  <div style="flex-basis: 15%; background-color: #9A340C;" class="p-2 d-flex flex-column gap-2 h-100 border-right border-dark">
     <button (click)="cambiarComponente(0)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-building"></i>Sedes</button>
     <button (click)="cambiarComponente(1)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-users"></i>Usuarios</button>
     <button (click)="cambiarComponente(4)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-boxes"></i>Inventario</button>
@@ -18,7 +18,7 @@
     <button (click)="cambiarComponente(2)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-receipt"></i>Reservas</button>
     <button (click)="cambiarComponente(3)" class="btn btn-outline-light w-100 d-flex justify-content-start align-items-center gap-3 background-btn"><i style="flex-basis: 20%;" class="fas fa-file"></i>Reportes</button>
   </div>
-  <div style="flex-grow: 1;" class="bg-light p-2 px-3 container w-100 h-100 m-0">
+  <div style="flex-grow: 1;" class="p-2 px-3 container w-100 h-100 m-0">
     <ng-container class="w-100" *ngComponentOutlet="componentes[indiceComponenteActual].componente"></ng-container>
   </div>
 </div>
@@ -28,6 +28,6 @@
     <button (click)="cambiarComponente(5)" style="flex-basis: 45%;" class="btn btn-outline-light d-flex gap-2 align-items-center"><i class="fas fa-user"></i> Perfil</button>
     <button (click)="logout()" style="flex-basis: 45%;" class="text-white btn btn-outline-danger d-flex gap-2 align-items-center"><i class="fas fa-exclamation"></i> Cerrar Sesión</button>
   </div>
- </div>
+</div>
 
 
