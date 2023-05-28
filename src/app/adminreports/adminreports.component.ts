@@ -70,7 +70,7 @@ export class AdminreportsComponent{
     })
     .catch(rej => console.log(rej)
     );
-    this.titleGraphic = "Ganancias por Sede";
+    this.titleGraphic = "Estado de Facturas";
     this.getSizeGraphic(0);
   }
 
@@ -125,7 +125,7 @@ export class AdminreportsComponent{
     .then(res => this.data = res)
     .catch(rej => console.log(rej)
     );
-    this.titleGraphic = "Ganancias por Sede";
+    this.titleGraphic = "Espacios por Sede";
     this.getSizeGraphic(0);
   }
 
