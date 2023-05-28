@@ -58,6 +58,8 @@ export class AdminreportsComponent{
     .catch(rej => console.log(rej)
     );
     this.titleGraphic = "Valor de Inventarios";
+    this.xAxisLabel = "Sedes"
+    this.yAxisLabel = "Valor"
     this.getSizeGraphic(1);
   }
 
@@ -133,7 +135,7 @@ export class AdminreportsComponent{
     .then(res => this.data = res)
     .catch(rej => console.log(rej)
     );
-    this.titleGraphic = "Ganancias por Sede";
+    this.titleGraphic = "Clientes por Sede";
     this.getSizeGraphic(0);
   }
 
